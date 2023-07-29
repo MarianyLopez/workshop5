@@ -13,7 +13,6 @@ public class HtmlValidator {
         System.out.println(htmlTagStack);
 
 
-
     }
     public static Stack<HtmlTag> isValidHtml(Queue<HtmlTag> htmlTags ){
         Stack <HtmlTag> htmlTagStack = new Stack<>();
