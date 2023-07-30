@@ -1,0 +1,20 @@
+Index: HtmlValidator.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import java.io.IOException;\r\nimport java.util.Queue;\r\nimport java.util.Stack;\r\n\r\npublic class HtmlValidator {\r\n\r\n    public static void main(String[] args) throws IOException {\r\n\r\n        Queue <HtmlTag> htmlTags = HtmlReader.getTagsFromHtmlFile(\"\");\r\n\r\n        Stack<HtmlTag> htmlTagStack = isValidHtml(htmlTags);\r\n\r\n        System.out.println(htmlTagStack);\r\n\r\n\r\n\r\n    }\r\n    public static Stack<HtmlTag> isValidHtml(Queue<HtmlTag> htmlTags ){\r\n        Stack <HtmlTag> htmlTagStack = new Stack<>();\r\n        for (HtmlTag htmlTag: htmlTags) {\r\n            if (htmlTag.isOpenTag()){\r\n                htmlTagStack.push(htmlTag);\r\n            }else if(!htmlTag.isSelfClosing()) {\r\n                if (!htmlTagStack.empty()) {\r\n                    if (htmlTag.matches(htmlTagStack.peek())) {\r\n                        htmlTagStack.pop();\r\n                    }\r\n                }else\r\n                    return null;\r\n            } else{\r\n                if(htmlTagStack.empty()){\r\n                    return null;\r\n                }\r\n            }\r\n        }\r\n        return htmlTagStack;\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/HtmlValidator.java b/HtmlValidator.java
+--- a/HtmlValidator.java	(revision 6fa5c8af8e1a2b11dce931e1d50f782bd7c9113e)
++++ b/HtmlValidator.java	(date 1690752284209)
+@@ -24,7 +24,8 @@
+                 if (!htmlTagStack.empty()) {
+                     if (htmlTag.matches(htmlTagStack.peek())) {
+                         htmlTagStack.pop();
+-                    }
++                    }else
++                        return null;
+                 }else
+                     return null;
+             } else{

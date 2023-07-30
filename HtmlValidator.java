@@ -23,7 +23,8 @@ public class HtmlValidator {
                 if (!htmlTagStack.empty()) {
                     if (htmlTag.matches(htmlTagStack.peek())) {
                         htmlTagStack.pop();
-                    }
+                    }else
+                        return null;
                 }else
                     return null;
             } else{
