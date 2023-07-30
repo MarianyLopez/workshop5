@@ -10,8 +10,16 @@ public class HtmlValidator {
 
         Stack<HtmlTag> htmlTagStack = isValidHtml(htmlTags);
 
-        System.out.println(htmlTagStack);
-
+        if (htmlTagStack==null){
+            System.out.println(htmlTagStack);
+            System.out.println("El html no está bien formateado");
+        } else if(!htmlTagStack.empty()){
+            System.out.println(htmlTagStack);
+            System.out.println("El html no está bien formateado");
+        }else {
+            System.out.println(htmlTagStack);
+            System.out.println("El html está bien formateado");
+        }
 
     }
     public static Stack<HtmlTag> isValidHtml(Queue<HtmlTag> htmlTags ){
